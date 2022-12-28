@@ -1,0 +1,210 @@
+#pragma once
+
+#include <iostream>
+#include <vector>
+#include <map>
+
+template <typename T>
+struct Node
+{
+	T key;
+
+	Node<T>* next;
+	Node<T>* prev;
+
+	Node<T>* spec;
+
+	Node(T key) 
+	{
+		this->key = key;
+		this->next = nullptr;
+		this->prev = nullptr;
+		this->spec = nullptr;
+	}
+};
+
+template <typename T>
+class SkipList 
+{
+private:
+	Node<T>* head;
+
+	void copy(const SkipList& other)
+	{
+		if (other.head == nullptr)
+		{
+			this->head = nullptr;
+			return;
+		}
+
+		Node<T>* curOtherNode = other.head;
+
+		Node<T>* curNode = nullptr;
+
+		std::map<Node<T>*, std::vector<Node<T>*>> awaitingSpecs;
+		//<copied node, new copy node>
+		std::map<Node<T>*, Node<T>*> correspondingNodes;
+
+		int curOtherNodeIndex = 0;
+		while (curOtherNode)
+		{
+			Node<T>* newNode = new Node<T>(curOtherNode->key);
+			if (this->head == nullptr)
+			{
+				this->head = newNode;
+				curNode = this->head;
+				curNode->next = curNode;
+			}
+			else
+			{
+				curNode->next = newNode;
+				newNode->prev = curNode;
+			}
+
+			correspondingNodes[curOtherNode] = newNode;
+
+			//Set the new node's spec
+			if (curOtherNode->spec)
+			{
+				if (correspondingNodes.find(curOtherNode->spec) != correspondingNodes.end())
+				{
+					newNode->spec = correspondingNodes[curOtherNode->spec];
+				}
+				else
+				{
+					if (awaitingSpecs.find(curOtherNode->spec) != awaitingSpecs.end())
+					{
+						awaitingSpecs[curOtherNode->spec].push_back(newNode);
+					}
+					else
+					{
+						awaitingSpecs[curOtherNode->spec] = { newNode };
+					}
+				}			
+			}
+
+			//Set old nodes' specs
+			if (awaitingSpecs.find(curOtherNode) != awaitingSpecs.end())
+			{
+				std::vector<Node<T>*> oldNodes = awaitingSpecs[curOtherNode];
+
+				for (Node<T>* oldNode : oldNodes)
+				{
+					oldNode->spec = newNode;
+				}
+			}
+
+			curNode = curNode->next;
+			curOtherNode = curOtherNode->next;
+			curOtherNodeIndex++;
+		}
+	}
+
+	void deallocate()
+	{
+		Node<T>* curNode = this->head;
+
+		while (curNode)
+		{
+			Node<T>* temp = curNode;
+			curNode = curNode->next;
+
+			delete temp;
+		}
+	}
+
+
+	std::vector<std::vector<Node<T>*>> getLevelsDFS(const Node<T>* curCity, std::vector<Node<T>*> visited) const
+	{
+		if (curCity->next == nullptr) return std::vector<std::vector<Node<T>*>> { visited };
+
+		std::vector<std::vector<Node<T>*>> pathsNext;
+		if (std::count(visited.begin(), visited.end(), curCity->next) <= 0)
+		{
+			visited.push_back(curCity->next);
+			pathsNext = getLevelsDFS(curCity->next, visited);
+			visited.pop_back();
+		}
+
+		std::vector<std::vector<Node<T>*>> pathsSpec;
+		if (curCity->spec != nullptr && std::count(visited.begin(), visited.end(), curCity->spec) <= 0)
+		{
+			visited.push_back(curCity->spec);
+			pathsSpec = getLevelsDFS(curCity->spec, visited);
+			visited.pop_back();
+		}
+
+		pathsNext.insert(pathsNext.end(), pathsSpec.begin(), pathsSpec.end());
+
+		return pathsNext;
+	}
+
+public:
+
+	SkipList(Node<T>* head)
+	{
+		this->head = head;
+	}
+
+	SkipList()
+	{
+		this->head = nullptr;
+	}
+
+	SkipList(const SkipList& other)
+	{
+		this->copy(other);
+	}
+
+	SkipList& operator=(const SkipList& other)
+	{
+		this->deallocate();
+		this->copy(other);
+	}
+
+	~SkipList()
+	{
+		this->deallocate();
+	}
+
+	std::vector<std::vector<Node<T>*>> getAllLevels() const
+	{
+		if (this->head == nullptr) throw std::exception("There are no cities to get the paths for!");
+
+		auto allPaths = getLevelsDFS(this->getHead(), std::vector<Node<T>*> { this->head });
+
+		return allPaths;
+	}
+
+
+	void print(std::ostream& out) const
+	{
+		Node<T>* curNode = this->head;
+		out << "--------------------------------------------------------------------------------------------------------" << std::endl;
+		out << "This SkipList: ";
+		while (curNode)
+		{
+			out << curNode->key << (curNode->next != nullptr ? " --> " : "");
+			curNode = curNode->next;
+		}
+		out << std::endl;
+
+		curNode = this->head;
+		out << "Special connections:" << std::endl;
+		while (curNode)
+		{
+			if (curNode->spec)
+			{
+				out << curNode->key << " --> " << curNode->spec->key << std::endl;
+			}
+			curNode = curNode->next;
+		}
+		out << "--------------------------------------------------------------------------------------------------------" << std::endl;
+	}
+
+	const Node<T>* getHead() const
+	{
+		return this->head;
+	}
+};
+
