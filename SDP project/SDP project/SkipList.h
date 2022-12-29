@@ -113,32 +113,6 @@ private:
 		}
 	}
 
-
-	std::vector<std::vector<Node<T>*>> getLevelsDFS(const Node<T>* curCity, std::vector<Node<T>*> visited) const
-	{
-		if (curCity->next == nullptr) return std::vector<std::vector<Node<T>*>> { visited };
-
-		std::vector<std::vector<Node<T>*>> pathsNext;
-		if (std::count(visited.begin(), visited.end(), curCity->next) <= 0)
-		{
-			visited.push_back(curCity->next);
-			pathsNext = getLevelsDFS(curCity->next, visited);
-			visited.pop_back();
-		}
-
-		std::vector<std::vector<Node<T>*>> pathsSpec;
-		if (curCity->spec != nullptr && std::count(visited.begin(), visited.end(), curCity->spec) <= 0)
-		{
-			visited.push_back(curCity->spec);
-			pathsSpec = getLevelsDFS(curCity->spec, visited);
-			visited.pop_back();
-		}
-
-		pathsNext.insert(pathsNext.end(), pathsSpec.begin(), pathsSpec.end());
-
-		return pathsNext;
-	}
-
 public:
 
 	SkipList(Node<T>* head)
@@ -167,44 +141,54 @@ public:
 		this->deallocate();
 	}
 
-	std::vector<std::vector<Node<T>*>> getAllLevels() const
+	const Node<T>* getHead() const
 	{
-		if (this->head == nullptr) throw std::exception("There are no cities to get the paths for!");
-
-		auto allPaths = getLevelsDFS(this->getHead(), std::vector<Node<T>*> { this->head });
-
-		return allPaths;
+		return this->head;
 	}
 
-
-	void print(std::ostream& out) const
+	const int getSize() const
 	{
+		int size = 0;
 		Node<T>* curNode = this->head;
-		out << "--------------------------------------------------------------------------------------------------------" << std::endl;
-		out << "This SkipList: ";
 		while (curNode)
 		{
-			out << curNode->key << (curNode->next != nullptr ? " --> " : "");
+			size++;
 			curNode = curNode->next;
 		}
-		out << std::endl;
+
+		return size;
+	}
+
+	std::string toString() const
+	{
+		std::string NEWLINE = "\n";
+
+		std::string result = "";
+		result += "--------------------------------------------------------------------------------------------------------" + NEWLINE;
+		result += "This SkipList: ";
+
+		Node<T>* curNode = this->head;
+
+		while (curNode)
+		{
+			result += curNode->key + (curNode->next != nullptr ? " --> " : "");
+			curNode = curNode->next;
+		}
+		result += NEWLINE;
 
 		curNode = this->head;
-		out << "Special connections:" << std::endl;
+		result += "Special connections:" + NEWLINE;
 		while (curNode)
 		{
 			if (curNode->spec)
 			{
-				out << curNode->key << " --> " << curNode->spec->key << std::endl;
+				result += curNode->key + " --> " + curNode->spec->key + NEWLINE;
 			}
 			curNode = curNode->next;
 		}
-		out << "--------------------------------------------------------------------------------------------------------" << std::endl;
-	}
+		result += "--------------------------------------------------------------------------------------------------------" + NEWLINE;
 
-	const Node<T>* getHead() const
-	{
-		return this->head;
+		return result;
 	}
 };
 
