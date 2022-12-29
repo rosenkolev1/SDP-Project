@@ -146,7 +146,7 @@ public:
 		return this->head;
 	}
 
-	const int getSize() const
+	int getSize() const
 	{
 		int size = 0;
 		Node<T>* curNode = this->head;

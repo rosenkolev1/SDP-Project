@@ -13,32 +13,20 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Task 1">
+      <UniqueIdentifier>{1a150996-ced1-4513-8ed2-d213f3fe3e7e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SDP project.cpp">
+    <ClCompile Include="Tests_Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="StringManip.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Box.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Tests_Task1.cpp">
+      <Filter>Source Files\Task 1</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SkipList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StringManip.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UndirectedGraph.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GraphEdge.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Box.h">
+    <ClInclude Include="doctest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

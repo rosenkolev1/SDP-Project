@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Common">
+      <UniqueIdentifier>{276216a2-8776-48bd-93da-96cd5d4a1fdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Task 1">
+      <UniqueIdentifier>{074e8534-46e6-4733-9753-5365659b1df9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Task 2">
+      <UniqueIdentifier>{d6276042-852f-45ee-a60f-16665367c424}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Task 3">
+      <UniqueIdentifier>{dcb539b4-9780-4b20-8c9f-cc7e80df9e04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Common">
+      <UniqueIdentifier>{32472b21-da62-4872-9b96-76611db7cd05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Task 1">
+      <UniqueIdentifier>{b9ba4c88-b1c6-4584-acd3-e2dca16dfeee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Task 2">
+      <UniqueIdentifier>{80ce416a-2d77-4fce-8a0b-a4f893e450d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Task 3">
+      <UniqueIdentifier>{fb56695b-9e28-4dd1-a033-0cc1462e41b9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="StringManip.h">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Task 1.h">
+      <Filter>Header Files\Task 1</Filter>
+    </ClInclude>
+    <ClInclude Include="SkipList.h">
+      <Filter>Header Files\Task 1</Filter>
+    </ClInclude>
+    <ClInclude Include="UndirectedGraph.h">
+      <Filter>Header Files\Task 2</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphEdge.h">
+      <Filter>Header Files\Task 2</Filter>
+    </ClInclude>
+    <ClInclude Include="Box.h">
+      <Filter>Header Files\Task 3</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StringManip.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Task 1.cpp">
+      <Filter>Source Files\Task 1</Filter>
+    </ClCompile>
+    <ClCompile Include="Task 2.cpp">
+      <Filter>Source Files\Task 2</Filter>
+    </ClCompile>
+    <ClCompile Include="Box.cpp">
+      <Filter>Source Files\Task 3</Filter>
+    </ClCompile>
+    <ClCompile Include="Task 3.cpp">
+      <Filter>Source Files\Task 3</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

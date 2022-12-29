@@ -39,12 +39,6 @@ std::string Box::toString(int boxTabs) const
 
 void Box::addBox(std::shared_ptr<Box> box)
 {
-	/*std::cout << "Parent box: " << this << "\n";
-	std::cout << "Nested box: " << &box << "\n";*/
-	//this->boxes.push_back(box);
-	/*auto something = std::make_shared<Box>(box);
-	this->boxes.emplace_back(something);*/
-	//std::cout << "Nested box: " << &this->boxes[0] << "\n";
 	this->boxes.push_back(box);
 }
 
