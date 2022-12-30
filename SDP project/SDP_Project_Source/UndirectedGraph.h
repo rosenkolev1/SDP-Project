@@ -68,6 +68,11 @@ public:
 		return this->vertexEdges;
 	}
 
+	int getVertexesCount() const
+	{
+		return this->vertexEdges.size();
+	}
+
 	void print(std::ostream& out) const
 	{
 		out << "--------------------------------------------------------" << std::endl;

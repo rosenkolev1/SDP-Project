@@ -24,6 +24,7 @@
     <ClInclude Include="SkipList.h" />
     <ClInclude Include="StringManip.h" />
     <ClInclude Include="Task 1.h" />
+    <ClInclude Include="Task 2.h" />
     <ClInclude Include="UndirectedGraph.h" />
   </ItemGroup>
   <ItemGroup>

@@ -11,6 +11,7 @@
 #include <queue>
 #include "Box.h"
 #include "Task 1.h"
+#include "Task 2.h"
 
 int main()
 {
@@ -21,11 +22,11 @@ int main()
         copyConstructorTest2();
     }*/
 
-    //task1(std::cout, std::cin);
+    /*task1(std::cout, std::cin);*/
 
     //TASK 2
-    //constructorTest3();
-    /*std::ifstream is("Plovdiv.txt");
+    /*constructorTest3();
+    std::ifstream is("Plovdiv.txt");
     std::cout << task2(is);
     is.close();
     

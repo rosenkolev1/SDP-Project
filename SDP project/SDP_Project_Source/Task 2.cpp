@@ -1,7 +1,4 @@
-#include "UndirectedGraph.h"
-#include <queue>
-#include "StringManip.h"
-#include <fstream>
+#include "Task 2.h"
 
 void constructorTest3()
 {
@@ -45,6 +42,18 @@ std::vector<std::vector<GraphEdge<std::string>> > task2_getAllPathsInTime(const 
             curPathTime += edge.weight;
         }
 
+        bool curPathEndAtRailstation = false;
+        if (curPath.size() >= 2)
+        {
+            auto toNode = curPath.back().to;
+            curPathEndAtRailstation = toNode == start;
+
+            if (curPathEndAtRailstation)
+            {
+                allPaths.push_back(curPath);
+            }
+        }
+
         for (auto edge : allConnected)
         {
             if (curPathTime + edge.weight <= maxTime)
@@ -72,25 +81,35 @@ std::vector<std::vector<GraphEdge<std::string>> > task2_getAllPathsInTime(const 
                     {
                         continue;
                     }
-                    else if (firstEdge.edgeDestinationsAreSame(secondEdge) && secondEdge.edgeDestinationsAreSame(thirdEdge) &&
-                        firstEdge.edgeDestinationsAreSame(thirdEdge))
-                    {
-                        //Debug shit
-                        int z = 100;
-                    }
+                }
+
+                //Check if the new edge destination has already been visited N times, where N is the number of vertecies(landmarks) in the graph.
+                //The worst case scenario for the number of times the best path(the one which visits the most landmarks) visits the new destination is N times.
+                int timesVisited = 0;
+                for (auto& visitedEdge : curPath)
+                {
+                    if (visitedEdge.to == edge.to) timesVisited++;
+                }
+
+                if (timesVisited == graph.getVertexesCount())
+                {
+                    continue;
+                }
+
+
+                timesVisited = 0;
+                //Check if the new edge has already been visited twice. A third travel through any given edge is useless and therefore the path is not the shortest possible
+                for (auto& visitedEdge : curPath)
+                {
+                    if (edge.edgeDestinationsAreSame(visitedEdge)) timesVisited++;
+                }
+
+                if (timesVisited == 2)
+                {
+                    continue;
                 }
 
                 curPaths.push(curPathCopy);
-            }
-        }
-
-        if (curPath.size() >= 2)
-        {
-            auto toNode = curPath.back().to;
-
-            if (toNode == start)
-            {
-                allPaths.push_back(curPath);
             }
         }
 
@@ -136,20 +155,6 @@ std::string task2(std::ifstream& in)
     maxTime = StringManip::parseToLong(input);
 
     auto allPaths = task2_getAllPathsInTime(landmarkGraph, RAILSTATION, maxTime);
-
-    for (int i = 0; i < allPaths.size(); i++)
-    {
-        std::cout << "Path " << i << ": " << RAILSTATION << (0 != allPaths[i].size() ? " --> " : "");
-
-        int pathTime = 0;
-        for (int y = 0; y < allPaths[i].size(); y++)
-        {
-            pathTime += allPaths[i][y].weight;
-            std::cout << allPaths[i][y].to << (y != allPaths[i].size() - 1 ? " --> " : "");
-        }
-        std::cout << " | TIME: " << pathTime;
-        std::cout << std::endl;
-    }
 
     if (allPaths.empty())
     {

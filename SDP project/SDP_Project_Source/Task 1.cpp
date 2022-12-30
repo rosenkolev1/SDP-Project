@@ -107,17 +107,22 @@ std::vector<std::vector<const Node<std::string>*>> getAllPaths(const SkipList<st
     return allPaths;
 }
 
+void printToConsole(std::istream& is, std::string text)
+{
+    if (&is == &std::cin) std::cout << text;
+}
+
 void task1(std::ostream& os, std::istream& is)
 {
     int n = 0;
-    std::cout << "Count of cities: ";
+    printToConsole(is, "Count of cities: ");
     is >> n;
 
     std::map<std::string, Node<std::string>* > cities;
     std::string startCity = "";
     std::string endCity = "";
 
-    std::cout << "Names of cities: ";
+    printToConsole(is, "Names of cities: ");
 
     std::string cityName = "";
     for (int i = 0; i < n; i++)
@@ -136,7 +141,7 @@ void task1(std::ostream& os, std::istream& is)
         cities[cityName] = newNode;
     }
 
-    std::cout << "Direct lines:\n";
+    printToConsole(is, "Direct lines:\n");
     is.ignore();
     while (true)
     {
@@ -152,7 +157,7 @@ void task1(std::ostream& os, std::istream& is)
         cities[from]->spec = cities[to];
     }
 
-    std::cout << "Cities of Ana and Vankata: ";
+    printToConsole(is, "Cities of Ana and Vankata: ");
 
     std::string citiesRequiredString = "";
     std::getline(is, citiesRequiredString);
@@ -175,7 +180,7 @@ void task1(std::ostream& os, std::istream& is)
             shortestPath = curPath;
         }
     }
-    std::cout << std::endl;
+    printToConsole(is, "\n");
     os << "The shortest path that visits each of the necessary cities is: ";
 
     //Print the result
