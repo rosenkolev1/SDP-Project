@@ -25,7 +25,7 @@ std::string Box::toString(int boxTabs) const
 	}
 	result += "\n";
 
-	result += nestedIndent + "Boxes: " + "\n";
+	result += nestedIndent + "Boxes:" + "\n";
 	for (int i = 0; i < this->boxes.size(); i++)
 	{
 		std::shared_ptr<Box> nestedBox = this->boxes[i];

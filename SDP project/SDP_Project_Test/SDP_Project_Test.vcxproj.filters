@@ -42,9 +42,21 @@
     <ClCompile Include="Tests_PathInfo.cpp">
       <Filter>Source Files\Task 2</Filter>
     </ClCompile>
+    <ClCompile Include="Tests_Task3.cpp">
+      <Filter>Source Files\Task 3</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests_Box.cpp">
+      <Filter>Source Files\Task 3</Filter>
+    </ClCompile>
+    <ClCompile Include="TestCasesUtil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="doctest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TestCasesUtil.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
