@@ -1,4 +1,5 @@
 #include "Task 1.h"
+#include <unordered_map>
 
 bool pathContainsAllRequired(std::vector<const Node<std::string>*> visited, std::vector<std::string> requiredCities)
 {
@@ -118,7 +119,7 @@ void task1(std::ostream& os, std::istream& is)
     printToConsole(is, "Count of cities: ");
     is >> n;
 
-    std::map<std::string, Node<std::string>* > cities;
+    std::unordered_map<std::string, Node<std::string>* > cities;
     std::string startCity = "";
     std::string endCity = "";
 

@@ -30,6 +30,12 @@
     <ClCompile Include="Tests_Task2.cpp">
       <Filter>Source Files\Task 2</Filter>
     </ClCompile>
+    <ClCompile Include="Tests_UndirectedGraph.cpp">
+      <Filter>Source Files\Task 2</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests_GraphEdge.cpp">
+      <Filter>Source Files\Task 2</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="doctest.h">

@@ -1,25 +1,5 @@
 #include "Task 2.h"
 
-void constructorTest3()
-{
-    auto someGraph = UndirectedGraph<std::string>();
-    someGraph.addEdge("Railstation", "RomanStadium", 20);
-    someGraph.addEdge("Railstation", "ArtGallery", 26);
-    someGraph.addEdge("RomanStadium", "DzhumayaSquare", 2);
-    someGraph.addEdge("ArtGallery", "DzhumayaSquare", 5);
-    someGraph.addEdge("ArtGallery", "AntiqueTheatre", 7);
-    someGraph.addEdge("ArtGallery", "HistoricalMuseum", 14);
-    someGraph.addEdge("DzhumayaSquare", "HistoricalMuseum", 18);
-    someGraph.addEdge("HistoricalMuseum", "AntiqueTheatre", 12);
-    //Repeating
-    someGraph.addEdge("DzhumayaSquare", "HistoricalMuseum", 9);
-
-    someGraph.print(std::cout);
-
-    auto secondGraph = someGraph;
-    secondGraph.print(std::cout);
-}
-
 std::vector<std::vector<GraphEdge<std::string>> > task2_getAllPathsInTime(const UndirectedGraph<std::string>& graph, std::string start, int maxTime)
 {
     std::queue<std::vector<GraphEdge<std::string>> > curPaths;
@@ -68,37 +48,11 @@ std::vector<std::vector<GraphEdge<std::string>> > task2_getAllPathsInTime(const 
 
                 curPathCopy.push_back(edge);
 
-                //Get last 3 edges from path and check if there are pointless movements. If there are, do not add this new path
-                //This remove A LOT of unnecessary paths (in one of the tests, the total amount of paths changes from ~85,000 to 118).
-                if (curPathCopy.size() >= 3)
-                {
-                    auto firstEdge = curPathCopy[curPathCopy.size() - 3];
-                    auto secondEdge = curPathCopy[curPathCopy.size() - 2];
-                    auto thirdEdge = curPathCopy[curPathCopy.size() - 1];
 
-                    if (firstEdge.edgeDestinationsAreSame(secondEdge) && secondEdge.edgeDestinationsAreSame(thirdEdge) &&
-                        firstEdge.from == thirdEdge.from && firstEdge.to == thirdEdge.to)
-                    {
-                        continue;
-                    }
-                }
 
-                //Check if the new edge destination has already been visited N times, where N is the number of vertecies(landmarks) in the graph.
-                //The worst case scenario for the number of times the best path(the one which visits the most landmarks) visits the new destination is N times.
                 int timesVisited = 0;
-                for (auto& visitedEdge : curPath)
-                {
-                    if (visitedEdge.to == edge.to) timesVisited++;
-                }
-
-                if (timesVisited == graph.getVertexesCount())
-                {
-                    continue;
-                }
-
-
-                timesVisited = 0;
                 //Check if the new edge has already been visited twice. A third travel through any given edge is useless and therefore the path is not the shortest possible
+                //This remove A LOT of unnecessary paths(in one of the tests, the total amount of paths changes from ~85, 000 to 118).
                 for (auto& visitedEdge : curPath)
                 {
                     if (edge.edgeDestinationsAreSame(visitedEdge)) timesVisited++;
@@ -108,6 +62,33 @@ std::vector<std::vector<GraphEdge<std::string>> > task2_getAllPathsInTime(const 
                 {
                     continue;
                 }
+
+                ////Get last 3 edges from path and check if there are pointless movements. If there are, do not add this new path
+                //if (curPathCopy.size() >= 3)
+                //{
+                //    auto firstEdge = curPathCopy[curPathCopy.size() - 3];
+                //    auto secondEdge = curPathCopy[curPathCopy.size() - 2];
+                //    auto thirdEdge = curPathCopy[curPathCopy.size() - 1];
+
+                //    if (firstEdge.edgeDestinationsAreSame(secondEdge) && secondEdge.edgeDestinationsAreSame(thirdEdge) &&
+                //        firstEdge.from == thirdEdge.from && firstEdge.to == thirdEdge.to)
+                //    {
+                //        continue;
+                //    }
+                //}
+
+                ////Check if the new edge destination has already been visited N times, where N is the number of vertecies(landmarks) in the graph.
+                ////The worst case scenario for the number of times the best path(the one which visits the most landmarks) visits the new destination is N times.
+                //timesVisited = 0;
+                //for (auto& visitedEdge : curPath)
+                //{
+                //    if (visitedEdge.to == edge.to) timesVisited++;
+                //}
+
+                //if (timesVisited == graph.getVertexesCount())
+                //{
+                //    continue;
+                //}
 
                 curPaths.push(curPathCopy);
             }
