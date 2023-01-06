@@ -131,6 +131,7 @@
   <ItemGroup>
     <ClCompile Include="Tests_GraphEdge.cpp" />
     <ClCompile Include="Tests_Main.cpp" />
+    <ClCompile Include="Tests_PathInfo.cpp" />
     <ClCompile Include="Tests_Task1.cpp" />
     <ClCompile Include="Tests_Task2.cpp" />
     <ClCompile Include="Tests_UndirectedGraph.cpp" />

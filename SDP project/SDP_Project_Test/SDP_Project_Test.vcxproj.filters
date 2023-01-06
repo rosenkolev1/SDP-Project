@@ -19,6 +19,9 @@
     <Filter Include="Source Files\Task 2">
       <UniqueIdentifier>{be850816-e48c-49a8-935b-000888bbc097}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Task 3">
+      <UniqueIdentifier>{66b6f7e0-3ffc-4394-bec4-bd1537244e5c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Tests_Main.cpp">
@@ -34,6 +37,9 @@
       <Filter>Source Files\Task 2</Filter>
     </ClCompile>
     <ClCompile Include="Tests_GraphEdge.cpp">
+      <Filter>Source Files\Task 2</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests_PathInfo.cpp">
       <Filter>Source Files\Task 2</Filter>
     </ClCompile>
   </ItemGroup>

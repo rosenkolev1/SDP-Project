@@ -3,7 +3,6 @@
 #include <string>
 #include "GraphEdge.h"
 #include <set>
-#include <map>
 #include <unordered_map>
 
 class PathInfo {
@@ -49,13 +48,13 @@ public:
 
 	int timeTaken;
 	
-	PathInfo()
+	PathInfo(std::string start)
 	{
 		this->curPath = std::vector<GraphEdge<std::string>>();
-		this->lastEdge = "Railstation";
+		this->lastEdge = start;
 
 		this->visitedLandmarks = std::set<std::string> {
-			"Railstation"
+			start
 		};
 		this->edgesVisitations = std::unordered_map<GraphEdge<std::string>, int, GraphEdgeKeyHasher, GraphEdgeKeyEquals>();
 

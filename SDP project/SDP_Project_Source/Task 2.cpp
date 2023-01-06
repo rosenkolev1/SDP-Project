@@ -4,7 +4,7 @@
 PathInfo task2_getBestPathInTime(const UndirectedGraph<std::string>& graph, std::string start, int maxTime)
 {
     std::queue<PathInfo> curPaths;
-    curPaths.push(PathInfo());
+    curPaths.push(PathInfo(start));
 
     auto allPaths = std::vector<PathInfo>();
 
@@ -76,9 +76,9 @@ PathInfo task2_getBestPathInTime(const UndirectedGraph<std::string>& graph, std:
     }
 
     //Get the best path
+    auto bestPath = allPaths[0];
 
-    auto bestPath = PathInfo();
-    for (int i = 0; i < allPaths.size(); i++)
+    for (int i = 1; i < allPaths.size(); i++)
     {
         auto curPath = allPaths[i];
 

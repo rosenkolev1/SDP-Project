@@ -31,4 +31,9 @@ struct GraphEdge
 	{
 		return this->to == other.to && this->from == other.from && this->weight == other.weight;
 	}
+
+	bool operator==(const GraphEdge<T>& other) const
+	{
+		return this->edgesAreEqual(other);
+	}
 };
