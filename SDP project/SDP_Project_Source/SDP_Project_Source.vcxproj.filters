@@ -60,6 +60,9 @@
     <ClInclude Include="Task 2.h">
       <Filter>Header Files\Task 2</Filter>
     </ClInclude>
+    <ClInclude Include="PathInfo.h">
+      <Filter>Header Files\Task 2</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -79,6 +82,9 @@
     </ClCompile>
     <ClCompile Include="Task 3.cpp">
       <Filter>Source Files\Task 3</Filter>
+    </ClCompile>
+    <ClCompile Include="PathInfo.cpp">
+      <Filter>Source Files\Task 2</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

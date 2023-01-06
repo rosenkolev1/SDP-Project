@@ -27,7 +27,8 @@ struct GraphEdge
 			|| this->to == other.from && this->from == other.to);
 	}
 
-	bool edgesAreEqual(const GraphEdge<T>& other) const {
+	bool edgesAreEqual(const GraphEdge<T>& other) const 
+	{
 		return this->to == other.to && this->from == other.from && this->weight == other.weight;
 	}
 };

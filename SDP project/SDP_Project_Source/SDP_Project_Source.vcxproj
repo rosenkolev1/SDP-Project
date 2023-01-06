@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="Box.h" />
     <ClInclude Include="GraphEdge.h" />
+    <ClInclude Include="PathInfo.h" />
     <ClInclude Include="SkipList.h" />
     <ClInclude Include="StringManip.h" />
     <ClInclude Include="Task 1.h" />
@@ -30,6 +31,7 @@
   <ItemGroup>
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="PathInfo.cpp" />
     <ClCompile Include="StringManip.cpp" />
     <ClCompile Include="Task 1.cpp" />
     <ClCompile Include="Task 2.cpp" />

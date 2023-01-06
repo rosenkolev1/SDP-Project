@@ -1,44 +1,32 @@
 #include "Task 2.h"
+#include "PathInfo.h"
 
-std::vector<std::vector<GraphEdge<std::string>> > task2_getAllPathsInTime(const UndirectedGraph<std::string>& graph, std::string start, int maxTime)
+PathInfo task2_getBestPathInTime(const UndirectedGraph<std::string>& graph, std::string start, int maxTime)
 {
-    std::queue<std::vector<GraphEdge<std::string>> > curPaths;
-    curPaths.push(std::vector<GraphEdge<std::string>>());
+    std::queue<PathInfo> curPaths;
+    curPaths.push(PathInfo());
 
-    auto allPaths = std::vector<std::vector<GraphEdge<std::string>> >();
+    auto allPaths = std::vector<PathInfo>();
 
     while (true)
     {
-        auto something = graph.getVertexEdges();
-        auto curPath = curPaths.front();
+        auto curPathInfo = curPaths.front();
 
-        std::string currentNode = (!curPath.empty() ? curPath.back().to : start);
+        std::string currentNode = curPathInfo.lastEdge;
 
         auto allConnected = graph.getVertexEdges()[currentNode];
 
-        int curPathTime = 0;
-        for (auto edge : curPath)
+        /*if (curPathInfo.lastEdge == start)
         {
-            curPathTime += edge.weight;
-        }
-
-        bool curPathEndAtRailstation = false;
-        if (curPath.size() >= 2)
-        {
-            auto toNode = curPath.back().to;
-            curPathEndAtRailstation = toNode == start;
-
-            if (curPathEndAtRailstation)
-            {
-                allPaths.push_back(curPath);
-            }
-        }
+            allPaths.push_back(curPathInfo);
+        }*/
+        allPaths.push_back(curPathInfo);
 
         for (auto edge : allConnected)
         {
-            if (curPathTime + edge.weight <= maxTime)
+            if (curPathInfo.timeTaken + edge.weight <= maxTime)
             {
-                auto curPathCopy = curPath;
+                auto curPathInfoCopy = curPathInfo;
 
                 if (edge.to == currentNode)
                 {
@@ -46,51 +34,36 @@ std::vector<std::vector<GraphEdge<std::string>> > task2_getAllPathsInTime(const 
                     edge.from = currentNode;
                 }
 
-                curPathCopy.push_back(edge);
+                curPathInfoCopy.addEdge(edge);
 
-
-
-                int timesVisited = 0;
-                //Check if the new edge has already been visited twice. A third travel through any given edge is useless and therefore the path is not the shortest possible
-                //This remove A LOT of unnecessary paths(in one of the tests, the total amount of paths changes from ~85, 000 to 118).
-                for (auto& visitedEdge : curPath)
+                if (curPathInfoCopy.visitedLandmarks.size() == graph.getVertexesCount() &&
+                    curPathInfoCopy.lastEdge == start)
                 {
-                    if (edge.edgeDestinationsAreSame(visitedEdge)) timesVisited++;
+                    return curPathInfoCopy;
                 }
 
-                if (timesVisited == 2)
+                bool uselessPath = false;
+                for (auto pathInfo : allPaths)
+                {
+                    if (pathInfo.visitedLandmarks.size() >= curPathInfoCopy.visitedLandmarks.size() &&
+                        pathInfo.lastEdge == curPathInfoCopy.lastEdge &&
+                        pathInfo.timeTaken < curPathInfoCopy.timeTaken)
+                    {
+                        uselessPath = true;
+                        break;
+                    }
+                }
+
+                if (uselessPath) continue;
+
+                //Check if an edge has been visited more than 3 times. If so, then that path is not the shortest path which visits
+                //the same nodes and ends up at the same last node
+                if (curPathInfoCopy.edgesVisitations[edge] == 3)
                 {
                     continue;
                 }
 
-                ////Get last 3 edges from path and check if there are pointless movements. If there are, do not add this new path
-                //if (curPathCopy.size() >= 3)
-                //{
-                //    auto firstEdge = curPathCopy[curPathCopy.size() - 3];
-                //    auto secondEdge = curPathCopy[curPathCopy.size() - 2];
-                //    auto thirdEdge = curPathCopy[curPathCopy.size() - 1];
-
-                //    if (firstEdge.edgeDestinationsAreSame(secondEdge) && secondEdge.edgeDestinationsAreSame(thirdEdge) &&
-                //        firstEdge.from == thirdEdge.from && firstEdge.to == thirdEdge.to)
-                //    {
-                //        continue;
-                //    }
-                //}
-
-                ////Check if the new edge destination has already been visited N times, where N is the number of vertecies(landmarks) in the graph.
-                ////The worst case scenario for the number of times the best path(the one which visits the most landmarks) visits the new destination is N times.
-                //timesVisited = 0;
-                //for (auto& visitedEdge : curPath)
-                //{
-                //    if (visitedEdge.to == edge.to) timesVisited++;
-                //}
-
-                //if (timesVisited == graph.getVertexesCount())
-                //{
-                //    continue;
-                //}
-
-                curPaths.push(curPathCopy);
+                curPaths.push(curPathInfoCopy);
             }
         }
 
@@ -102,7 +75,19 @@ std::vector<std::vector<GraphEdge<std::string>> > task2_getAllPathsInTime(const 
         }
     }
 
-    return allPaths;
+    //Get the best path
+
+    auto bestPath = PathInfo();
+    for (int i = 0; i < allPaths.size(); i++)
+    {
+        auto curPath = allPaths[i];
+
+        if (curPath.lastEdge == start && curPath.visitedLandmarks.size() > bestPath.visitedLandmarks.size())
+        {
+            bestPath = curPath;
+        }
+    }
+    return bestPath;
 }
 
 std::string task2(std::ifstream& in)
@@ -135,49 +120,17 @@ std::string task2(std::ifstream& in)
     in >> input;
     maxTime = StringManip::parseToLong(input);
 
-    auto allPaths = task2_getAllPathsInTime(landmarkGraph, RAILSTATION, maxTime);
+    PathInfo bestPath = task2_getBestPathInTime(landmarkGraph, RAILSTATION, maxTime);
 
-    if (allPaths.empty())
+    std::string bestPathString = "";
+    bestPathString += "Best Path: " + RAILSTATION + (0 != bestPath.curPath.size() ? " --> " : "");
+
+    int pathTime = 0;
+
+    for (int y = 0; y < bestPath.curPath.size(); y++)
     {
-        return RAILSTATION;
+        bestPathString += bestPath.curPath[y].to + (y != bestPath.curPath.size() - 1 ? " --> " : "");
     }
-    else
-    {
-        auto bestPath = std::vector<GraphEdge<std::string>>();
-        int mostLandmarksVisited = 1;
 
-        for (int i = 0; i < allPaths.size(); i++)
-        {
-            std::map<std::string, int> visitedLandmarks;
-            visitedLandmarks[RAILSTATION] = 1;
-
-            for (auto curEdge : allPaths[i])
-            {
-                if (visitedLandmarks.find(curEdge.to) == visitedLandmarks.end())
-                {
-                    visitedLandmarks[curEdge.to] = 1;
-                }
-            }
-
-            int visitedLandmarksCount = visitedLandmarks.size();
-
-            if (visitedLandmarksCount > mostLandmarksVisited)
-            {
-                bestPath = allPaths[i];
-                mostLandmarksVisited = visitedLandmarksCount;
-            }
-        }
-
-        std::string bestPathString = "";
-        bestPathString += "Best Path: " + RAILSTATION + (0 != bestPath.size() ? " --> " : "");
-
-        int pathTime = 0;
-
-        for (int y = 0; y < bestPath.size(); y++)
-        {
-            bestPathString += bestPath[y].to + (y != bestPath.size() - 1 ? " --> " : "");
-        }
-
-        return bestPathString;
-    }
+    return bestPathString;
 }
