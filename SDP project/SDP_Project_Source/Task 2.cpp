@@ -6,6 +6,8 @@ PathInfo task2_getBestPathInTime(const UndirectedGraph<std::string>& graph, std:
     std::queue<PathInfo> curPaths;
     curPaths.push(PathInfo(start));
 
+    std::vector<PathInfo> tempCurPaths = std::vector<PathInfo>();
+
     auto allPaths = std::vector<PathInfo>();
 
     while (true)
@@ -42,6 +44,7 @@ PathInfo task2_getBestPathInTime(const UndirectedGraph<std::string>& graph, std:
                     return curPathInfoCopy;
                 }
 
+                //Check if we can remove the current path because it is useless
                 bool uselessPath = false;
                 for (auto pathInfo : allPaths)
                 {
@@ -56,6 +59,22 @@ PathInfo task2_getBestPathInTime(const UndirectedGraph<std::string>& graph, std:
 
                 if (uselessPath) continue;
 
+                //Check if we can remove any of the future BFS paths because they are useless
+
+                std::vector<int> uselessTempCurPathsIndexes = std::vector<int>();
+                for (int i = 0; i < tempCurPaths.size(); i++)
+                {
+                    auto pathInfo = tempCurPaths[i];
+                    if (pathInfo.visitedLandmarks.size() >= curPathInfoCopy.visitedLandmarks.size() &&
+                        pathInfo.lastEdge == curPathInfoCopy.lastEdge &&
+                        pathInfo.timeTaken > curPathInfoCopy.timeTaken)
+                    {
+                        tempCurPaths[i] = tempCurPaths.back();
+                        tempCurPaths.pop_back();
+                        i--;
+                    }
+                }   
+
                 //Check if an edge has been visited more than 3 times. If so, then that path is not the shortest path which visits
                 //the same nodes and ends up at the same last node
                 if (curPathInfoCopy.edgesVisitations[edge] == 3)
@@ -63,7 +82,7 @@ PathInfo task2_getBestPathInTime(const UndirectedGraph<std::string>& graph, std:
                     continue;
                 }
 
-                curPaths.push(curPathInfoCopy);
+                tempCurPaths.push_back(curPathInfoCopy);
             }
         }
 
@@ -71,7 +90,19 @@ PathInfo task2_getBestPathInTime(const UndirectedGraph<std::string>& graph, std:
 
         if (curPaths.empty())
         {
-            break;
+            if (tempCurPaths.empty()) 
+            {
+                break;
+            }
+            else 
+            {
+                for (auto tempCurPath : tempCurPaths)
+                {
+                    curPaths.push(tempCurPath);
+                }
+
+                tempCurPaths.clear();
+            }
         }
     }
 
