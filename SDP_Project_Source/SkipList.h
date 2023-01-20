@@ -132,7 +132,6 @@ public:
 
 	SkipList& operator=(const SkipList& other)
 	{
-		if (&other == this)
 		this->deallocate();
 		this->copy(other);
 	}

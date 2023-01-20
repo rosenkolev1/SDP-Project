@@ -59,14 +59,14 @@ void Box::simplifyBox()
 {
 	for (int i = 0; i < this->boxes.size(); i++)
 	{
-		auto& box = this->boxes[i];
+		auto box = this->boxes[i];
 
 		box->simplifyBox();
 
 		if (box->boxes.size() == 1 && box->souvenirs.size() == 0)
 		{
 			box = box->boxes[0];
-			//this->boxes[i] = box;
+			this->boxes[i] = box;
 		}
 		else if (box->boxes.size() == 0 && box->souvenirs.size() == 0)
 		{

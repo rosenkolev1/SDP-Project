@@ -1,0 +1,255 @@
+--TEST 1
+
+19
+PlovdivBox 2 Magnet Book 2 ArtBox TheatreBox
+ArtBox 0 1 Drawings
+Drawings 0 1 DrawingsNested1
+DrawingsNested1 0 1 DrawingsNested2
+DrawingsNested2 1 OldPlovdiv 0
+TheatreBox 0 1 TheatreSouvenirs
+TheatreSouvenirs 0 3 Plates Bags SouvenirsNested1
+Plates 1 DecorativePlate 0
+Bags 1 BagsSouvenir 1 BagsNested1
+BagsNested1 0 1 BagsNested2
+BagsNested2 0 1 BagsNested3
+BagsNested3 0 0
+SouvenirsNested1 0 1 SouvenirsNested2
+SouvenirsNested2 0 1 SouvenirsNested3
+SouvenirsNested3 0 1 SouvenirsNested4
+SouvenirsNested4 1 NestedSouvenirItem 0
+StaraZagoraBox 1 Postcard 2 Figurines Cups
+Figurines 1 AncientFigurine 0
+Cups 1 TraditionalCup 0
+
+--TEST 2
+
+19
+PlovdivBox 2 Magnet Book 2 ArtBox TheatreBox
+ArtBox 0 1 Drawings
+Drawings 0 1 DrawingsNested1
+DrawingsNested1 0 1 DrawingsNested2
+DrawingsNested2 1 OldPlovdiv 0
+TheatreBox 0 1 TheatreSouvenirs
+TheatreSouvenirs 0 3 Plates Bags SouvenirsNested1
+Plates 1 DecorativePlate 0
+Bags 1 BagsSouvenir 1 BagsNested1
+BagsNested1 1 BagsSouvenirNested1 1 BagsNested2
+BagsNested2 0 1 BagsNested3
+BagsNested3 0 0
+SouvenirsNested1 0 1 SouvenirsNested2
+SouvenirsNested2 0 1 SouvenirsNested3
+SouvenirsNested3 0 1 SouvenirsNested4
+SouvenirsNested4 1 NestedSouvenirItem 0
+StaraZagoraBox 1 Postcard 2 Figurines Cups
+Figurines 1 AncientFigurine 0
+Cups 1 TraditionalCup 0
+
+--TEST 3
+
+19
+PlovdivBox 2 Magnet Book 2 ArtBox TheatreBox
+ArtBox 0 1 Drawings
+Drawings 0 1 DrawingsNested1
+DrawingsNested1 0 1 DrawingsNested2
+DrawingsNested2 1 OldPlovdiv 0
+TheatreBox 0 1 TheatreSouvenirs
+TheatreSouvenirs 0 3 Plates Bags SouvenirsNested1
+Plates 1 DecorativePlate 0
+Bags 1 BagsSouvenir 1 BagsNested1
+BagsNested1 0 1 BagsNested2
+BagsNested2 1 BagsSouvenirNested2 1 BagsNested3
+BagsNested3 0 0
+SouvenirsNested1 0 1 SouvenirsNested2
+SouvenirsNested2 0 1 SouvenirsNested3
+SouvenirsNested3 0 1 SouvenirsNested4
+SouvenirsNested4 1 NestedSouvenirItem 0
+StaraZagoraBox 1 Postcard 2 Figurines Cups
+Figurines 1 AncientFigurine 0
+Cups 1 TraditionalCup 0
+
+--TEST 4
+
+19
+PlovdivBox 2 Magnet Book 2 ArtBox TheatreBox
+ArtBox 0 1 Drawings
+Drawings 0 1 DrawingsNested1
+DrawingsNested1 0 1 DrawingsNested2
+DrawingsNested2 1 OldPlovdiv 0
+TheatreBox 0 1 TheatreSouvenirs
+TheatreSouvenirs 0 3 Plates Bags SouvenirsNested1
+Plates 1 DecorativePlate 0
+Bags 1 BagsSouvenir 1 BagsNested1
+BagsNested1 1 BagsSouvenirNested1 1 BagsNested2
+BagsNested2 1 BagsSouvenirNested2 1 BagsNested3
+BagsNested3 0 0
+SouvenirsNested1 0 1 SouvenirsNested2
+SouvenirsNested2 0 1 SouvenirsNested3
+SouvenirsNested3 0 1 SouvenirsNested4
+SouvenirsNested4 1 NestedSouvenirItem 0
+StaraZagoraBox 1 Postcard 2 Figurines Cups
+Figurines 1 AncientFigurine 0
+Cups 1 TraditionalCup 0
+
+--TEST 5
+
+19
+PlovdivBox 2 Magnet Book 2 ArtBox TheatreBox
+ArtBox 0 1 Drawings
+Drawings 0 1 DrawingsNested1
+DrawingsNested1 0 1 DrawingsNested2
+DrawingsNested2 1 OldPlovdiv 0
+TheatreBox 0 1 TheatreSouvenirs
+TheatreSouvenirs 0 3 Plates Bags SouvenirsNested1
+Plates 1 DecorativePlate 0
+Bags 0 1 BagsNested1
+BagsNested1 1 BagsSouvenirNested1 1 BagsNested2
+BagsNested2 0 1 BagsNested3
+BagsNested3 0 0
+SouvenirsNested1 0 1 SouvenirsNested2
+SouvenirsNested2 0 1 SouvenirsNested3
+SouvenirsNested3 0 1 SouvenirsNested4
+SouvenirsNested4 1 NestedSouvenirItem 0
+StaraZagoraBox 1 Postcard 2 Figurines Cups
+Figurines 1 AncientFigurine 0
+Cups 1 TraditionalCup 0
+
+--TEST 6
+
+19
+PlovdivBox 2 Magnet Book 2 ArtBox TheatreBox
+ArtBox 0 1 Drawings
+Drawings 0 1 DrawingsNested1
+DrawingsNested1 0 1 DrawingsNested2
+DrawingsNested2 1 OldPlovdiv 0
+TheatreBox 0 1 TheatreSouvenirs
+TheatreSouvenirs 0 3 Plates Bags SouvenirsNested1
+Plates 1 DecorativePlate 0
+Bags 0 1 BagsNested1
+BagsNested1 0 1 BagsNested2
+BagsNested2 1 BagsSouvenirNested2 1 BagsNested3
+BagsNested3 0 0
+SouvenirsNested1 0 1 SouvenirsNested2
+SouvenirsNested2 0 1 SouvenirsNested3
+SouvenirsNested3 0 1 SouvenirsNested4
+SouvenirsNested4 1 NestedSouvenirItem 0
+StaraZagoraBox 1 Postcard 2 Figurines Cups
+Figurines 1 AncientFigurine 0
+Cups 1 TraditionalCup 0
+
+--TEST 7
+
+19
+PlovdivBox 2 Magnet Book 2 ArtBox TheatreBox
+ArtBox 0 1 Drawings
+Drawings 0 1 DrawingsNested1
+DrawingsNested1 0 1 DrawingsNested2
+DrawingsNested2 1 OldPlovdiv 0
+TheatreBox 0 1 TheatreSouvenirs
+TheatreSouvenirs 0 3 Plates Bags SouvenirsNested1
+Plates 1 DecorativePlate 0
+Bags 1 BagsSouvenir 1 BagsNested1
+BagsNested1 1 BagsSouvenirNested1 1 BagsNested2
+BagsNested2 1 BagsSouvenirNested2 1 BagsNested3
+BagsNested3 0 0
+SouvenirsNested1 0 1 SouvenirsNested2
+SouvenirsNested2 0 1 SouvenirsNested3
+SouvenirsNested3 0 1 SouvenirsNested4
+SouvenirsNested4 1 NestedSouvenirItem 0
+StaraZagoraBox 1 Postcard 2 Figurines Cups
+Figurines 1 AncientFigurine 0
+Cups 1 TraditionalCup 0
+
+--TEST 8
+
+19
+PlovdivBox 2 Magnet Book 2 ArtBox TheatreBox
+ArtBox 0 1 Drawings
+Drawings 0 1 DrawingsNested1
+DrawingsNested1 0 1 DrawingsNested2
+DrawingsNested2 1 OldPlovdiv 0
+TheatreBox 0 1 TheatreSouvenirs
+TheatreSouvenirs 0 3 Plates Bags SouvenirsNested1
+Plates 1 DecorativePlate 0
+Bags 0 1 BagsNested1
+BagsNested1 0 1 BagsNested2
+BagsNested2 0 1 BagsNested3
+BagsNested3 0 0
+SouvenirsNested1 0 1 SouvenirsNested2
+SouvenirsNested2 0 1 SouvenirsNested3
+SouvenirsNested3 0 1 SouvenirsNested4
+SouvenirsNested4 1 NestedSouvenirItem 0
+StaraZagoraBox 1 Postcard 2 Figurines Cups
+Figurines 1 AncientFigurine 0
+Cups 1 TraditionalCup 0
+
+--TEST 9
+
+19
+PlovdivBox 2 Magnet Book 2 ArtBox TheatreBox
+ArtBox 0 1 Drawings
+Drawings 0 1 DrawingsNested1
+DrawingsNested1 0 1 DrawingsNested2
+DrawingsNested2 1 OldPlovdiv 0
+TheatreBox 0 1 TheatreSouvenirs
+TheatreSouvenirs 0 3 Plates Bags SouvenirsNested1
+Plates 0 0
+Bags 0 1 BagsNested1
+BagsNested1 0 1 BagsNested2
+BagsNested2 0 1 BagsNested3
+BagsNested3 0 0
+SouvenirsNested1 0 1 SouvenirsNested2
+SouvenirsNested2 0 1 SouvenirsNested3
+SouvenirsNested3 0 1 SouvenirsNested4
+SouvenirsNested4 0 0
+StaraZagoraBox 1 Postcard 2 Figurines Cups
+Figurines 1 AncientFigurine 0
+Cups 1 TraditionalCup 0
+
+--TEST 10
+
+19
+PlovdivBox 1 OnlyPlovdivSouvenir 2 ArtBox TheatreBox
+ArtBox 0 1 Drawings
+Drawings 0 1 DrawingsNested1
+DrawingsNested1 0 1 DrawingsNested2
+DrawingsNested2 0 0
+TheatreBox 0 1 TheatreSouvenirs
+TheatreSouvenirs 0 3 Plates Bags SouvenirsNested1
+Plates 0 0
+Bags 0 1 BagsNested1
+BagsNested1 0 1 BagsNested2
+BagsNested2 0 1 BagsNested3
+BagsNested3 0 0
+SouvenirsNested1 0 1 SouvenirsNested2
+SouvenirsNested2 0 1 SouvenirsNested3
+SouvenirsNested3 0 1 SouvenirsNested4
+SouvenirsNested4 0 0
+StaraZagoraBox 1 Postcard 2 Figurines Cups
+Figurines 1 AncientFigurine 0
+Cups 1 TraditionalCup 0
+
+--TEST 10
+
+19
+PlovdivBox 0 2 ArtBox TheatreBox
+ArtBox 0 1 Drawings
+Drawings 0 1 DrawingsNested1
+DrawingsNested1 0 1 DrawingsNested2
+DrawingsNested2 0 0
+TheatreBox 0 1 TheatreSouvenirs
+TheatreSouvenirs 0 3 Plates Bags SouvenirsNested1
+Plates 0 0
+Bags 0 1 BagsNested1
+BagsNested1 0 1 BagsNested2
+BagsNested2 0 1 BagsNested3
+BagsNested3 0 0
+SouvenirsNested1 0 1 SouvenirsNested2
+SouvenirsNested2 0 1 SouvenirsNested3
+SouvenirsNested3 0 1 SouvenirsNested4
+SouvenirsNested4 0 0
+StaraZagoraBox 1 Postcard 2 Figurines Cups
+Figurines 1 AncientFigurine 0
+Cups 1 TraditionalCup 0
+
+
+
